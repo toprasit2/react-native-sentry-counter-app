@@ -7,9 +7,14 @@ export default class CounterScreen extends React.Component {
   }
 
   _add = (num) => {
-    this.setState({
-        count: this.state.count + num 
-    })
+    const count = this.state.count + num 
+
+    if (count > 33)
+        throw new Error('count > 33')
+    else
+        this.setState({
+            count: count
+        })
   }
   render() {
     return (
