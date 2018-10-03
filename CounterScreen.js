@@ -1,9 +1,35 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
+import Sentry from 'sentry-expo';
 
 export default class CounterScreen extends React.Component {
   state = {
       count : 0
+  }
+
+  
+  _add10 = () => {
+    Sentry.captureBreadcrumb({
+        message: 'Add 10',
+        category: 'count',
+        level: 'info',
+        data: {
+            count: this.state.count
+        }
+    })
+    this._add(10);
+  }
+
+  _add1 = () => {
+    Sentry.captureBreadcrumb({
+        message: 'Add 1',
+        category: 'count',
+        level: 'info',
+        data: {
+            count: this.state.count
+        }
+    })
+    this._add(1);
   }
 
   _add = (num) => {
@@ -11,18 +37,17 @@ export default class CounterScreen extends React.Component {
 
     if (count > 33)
         throw new Error('count > 33')
-    else
-        this.setState({
-            count: count
-        })
+    this.setState({
+        count: count
+    })
   }
   render() {
     return (
       <View>
             <Text style={styles.title}>Counter</Text>
             <Text style={styles.my_count}>{this.state.count}</Text>
-            <Button title="+10" onPress={() => this._add(10)}></Button>
-            <Button title="+1" onPress={() => this._add(1)}></Button>
+            <Button title="+10" onPress={this._add10}></Button>
+            <Button title="+1" onPress={this._add1}></Button>
       </View>
     );
   }
