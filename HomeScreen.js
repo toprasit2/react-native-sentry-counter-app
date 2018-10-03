@@ -4,18 +4,20 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 export default class HomeScreen extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-          <Text >Homescreen</Text>
+      <View>
+          <Text style={styles.title}>Homescreen</Text>
           <Button title="next" onPress={()=>this.props.navigation.navigate('Counter')} ></Button>
       </View>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const styles= StyleSheet.create({
+    title:{
+        textAlign: 'center',
+        fontSize: 50
+    },
+    my_count:{
+        textAlign: 'center',
+        fontSize: 50
+    }
+})

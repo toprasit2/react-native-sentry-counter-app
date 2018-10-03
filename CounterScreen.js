@@ -1,21 +1,35 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
 
 export default class CounterScreen extends React.Component {
+  state = {
+      count : 0
+  }
+
+  _add = (num) => {
+    this.setState({
+        count: this.state.count + num 
+    })
+  }
   render() {
     return (
       <View>
-          <Text>Counter</Text>
+            <Text style={styles.title}>Counter</Text>
+            <Text style={styles.my_count}>{this.state.count}</Text>
+            <Button title="+10" onPress={() => this._add(10)}></Button>
+            <Button title="+1" onPress={() => this._add(1)}></Button>
       </View>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const styles= StyleSheet.create({
+    title:{
+        textAlign: 'center',
+        fontSize: 50
+    },
+    my_count:{
+        textAlign: 'center',
+        fontSize: 50
+    }
+})
